@@ -1,22 +1,15 @@
 'use strict'
-const body = document.querySelector('body');
-
-body.style.backgroundColor = 'black';
-body.style.color = 'red';
-
 const overlay = document.querySelector('.overlay');
 const active = document.querySelector('.active');
-
 overlay.remove(active);
-body.remove(overlay);
 
 const createRow = () => {
 
-  return `
-  <tr>
-  <td class="table__cell ">2</td>
+  return `<tr> <td class="table__cell ">2</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
-  <span class="table__cell-id">id: 24601654816512</span>Телевизор DEXP</td>
+  <span class="table__cell-id">id: 24601654816512</span>
+  Телевизор DEXP
+  </td>
   <td class="table__cell table__cell_left">Техника для дома</td>
   <td class="table__cell">шт</td>
   <td class="table__cell">15</td>
@@ -27,15 +20,21 @@ const createRow = () => {
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
-</tr>
-    Your HTML CODE
-  `;
+</tr>`;
 };
-const table = createRow();
-document.body.append(table);
-table.outerHTML;
+console.log(createRow());
 
-//alert(createRow());
+const element_1 = createRow();
+const table_1 = document.querySelector('table');
+console.log(table_1);
+table_1.insertAdjacentText('beforeend', element_1);
+
+
+
+
+
+
+
 
 
 
