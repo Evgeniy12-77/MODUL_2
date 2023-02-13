@@ -12,33 +12,37 @@ const objGood = {
   price: 1000,
 };
 
-const createRow = (objGood) => {
+const createRow = (obj) => {
+  function createRow_1() {
 
-return `<tr> <td class="table__cell ">`+ objGood.id +`</td>
+return `<tr> <td class="table__cell ">`+ obj.id +`</td>
 
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
   <span class="table__cell-id">id: 24601654816512</span>` +
-  objGood.title + `
+  obj.title + `
   </td>
-  <td class="table__cell table__cell_left">` + objGood.description +`</td>
-  <td class="table__cell">`+ objGood.units + `</td>
-  <td class="table__cell">` + objGood.count + `</td>
-  <td class="table__cell">$` + objGood.price + `</td>
-  <td class="table__cell">$` + objGood.count * objGood.price + `</td>
+  <td class="table__cell table__cell_left">` + obj.description +`</td>
+  <td class="table__cell">`+ obj.units + `</td>
+  <td class="table__cell">` + obj.count + `</td>
+  <td class="table__cell">$` + obj.price + `</td>
+  <td class="table__cell">$` + obj.count * obj.price + `</td>
   <td class="table__cell table__cell_btn-wrapper">
     <button class="table__btn table__btn_pic"></button>
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
 </tr>`
-};
-
-console.log(createRow(objGood));
-const element_1 = createRow(objGood);
+  }
+createRow_1();
+console.log(createRow_1());
+const element_1 = createRow_1();
 const table_1 = document.querySelector('table');
 console.log(table_1);
-table_1.insertAdjacentText('beforeend', element_1);
 table_1.insertAdjacentHTML('beforeend', element_1);
+};
+createRow(objGood);
+
+
 
 let goods = [
   {
@@ -98,12 +102,21 @@ let goods = [
     }
   }
 ];
+function renderArray(Array) {
+for (let i = 0; i < Array.length; i++) {
+createRow(Array[i]);
+};
+};
+renderArray(goods);
 
-function renderGoods(goods) {
-  let goods_1 = goods.map(({ id, title, price, description, count, units}) => ({ id, title, price, description, count, units}));
-  };
 
-renderGoods();
+
+
+
+
+
+
+
 
 
 
