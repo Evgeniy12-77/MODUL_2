@@ -16,7 +16,6 @@ const createRow = (obj) => {
   function createRow_1() {
 
 return `<tr> <td class="table__cell ">`+ obj.id +`</td>
-
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
   <span class="table__cell-id">id: 24601654816512</span>` +
   obj.title + `
@@ -40,8 +39,6 @@ const table_1 = document.querySelector('table');
 console.log(table_1);
 table_1.insertAdjacentHTML('beforeend', element_1);
 };
-createRow(objGood);
-
 
 
 let goods = [
@@ -108,28 +105,25 @@ createRow(Array[i]);
 };
 };
 renderArray(goods);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function createRow_2(obj) {
+  return `<tr> <td class="table__cell ">`+ obj.id +`</td>
+  <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
+  <span class="table__cell-id">id: 24601654816512</span>` +
+  obj.title + `
+  </td>
+  <td class="table__cell table__cell_left">` + obj.description +`</td>
+  <td class="table__cell">`+ obj.units + `</td>
+  <td class="table__cell">` + obj.count + `</td>
+  <td class="table__cell">$` + obj.price + `</td>
+  <td class="table__cell">$` + obj.count * obj.price + `</td>
+  <td class="table__cell table__cell_btn-wrapper">
+    <button class="table__btn table__btn_pic"></button>
+    <button class="table__btn table__btn_edit"></button>
+    <button class="table__btn table__btn_del"></button>
+  </td>
+</tr>`
+  }
+const element_2= createRow_2(objGood);
+const table_2 = document.querySelector('table');
+console.log(table_2);
+table_2.insertAdjacentText('beforeend', element_2);
