@@ -14,11 +14,11 @@ const objGood = {
 
 const createRow = (obj) => {
 
-  const table = document.querySelector('table');
+  const table = document.querySelector('.table__body');
 
 
-table.insertAdjacentHTML('beforeend', `<tbody class="table__body">
-<tr> <td class="table__cell ">${obj.id}</td>
+table.insertAdjacentHTML('beforeend', `
+<tr> <td class="table__cell">${obj.id}</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
   <span class="table__cell-id">id: 24601654816512</span>${obj.title}
   </td>
@@ -32,8 +32,7 @@ table.insertAdjacentHTML('beforeend', `<tbody class="table__body">
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
-</tr>
-</tbody>`);
+</tr>`);
   };
 
 let goods = [
