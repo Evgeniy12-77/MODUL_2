@@ -1,3 +1,4 @@
+
 'use strict'
 const overlay = document.querySelector('.overlay');
 const active = document.querySelector('.active');
@@ -6,7 +7,7 @@ overlay.remove(active);
 const objGood = {
   id: 2,
   title: 'Телевизор DEXP',
-  description: 'Техника для дома',
+  category: 'Техника для дома',
   units: 'шт',
   count: 15,
   price: 1000,
@@ -22,7 +23,7 @@ table.insertAdjacentHTML('beforeend', `
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
   <span class="table__cell-id">id: 24601654816512</span>${obj.title}
   </td>
-  <td class="table__cell table__cell_left">${obj.description}</td>
+  <td class="table__cell table__cell_left">${obj.category}</td>
   <td class="table__cell">${obj.units}</td>
   <td class="table__cell">${obj.count}</td>
   <td class="table__cell">$${obj.price}</td>
@@ -108,7 +109,7 @@ function createRow_2(obj) {
   </td>
   <td class="table__cell table__cell_left">` + obj.description +`</td>
   <td class="table__cell">`+ obj.units + `</td>
-  <td class="table__cell">` + obj.count + `</td>
+  <td class="table__cell">${'Техника для дома'}</td>
   <td class="table__cell">$` + obj.price + `</td>
   <td class="table__cell">$` + obj.count * obj.price + `</td>
   <td class="table__cell table__cell_btn-wrapper">
@@ -120,6 +121,6 @@ function createRow_2(obj) {
 </tbody>`
 };
 const element_2= createRow_2(objGood);
-const table_2 = document.querySelector('table');
+const table_2 = document.querySelector('.table__body');
 console.log(table_2);
 table_2.insertAdjacentText('beforeend', element_2);
