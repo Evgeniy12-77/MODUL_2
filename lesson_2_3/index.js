@@ -13,33 +13,27 @@ const objGood = {
 };
 
 const createRow = (obj) => {
-  function createRow_1() {
 
-return `<tr> <td class="table__cell ">`+ obj.id +`</td>
+  const table = document.querySelector('.table__body');
+
+
+table.insertAdjacentHTML('beforeend', `
+<tr> <td class="table__cell">${obj.id}</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
-  <span class="table__cell-id">id: 24601654816512</span>` +
-  obj.title + `
+  <span class="table__cell-id">id: 24601654816512</span>${obj.title}
   </td>
-  <td class="table__cell table__cell_left">` + obj.description +`</td>
-  <td class="table__cell">`+ obj.units + `</td>
-  <td class="table__cell">` + obj.count + `</td>
-  <td class="table__cell">$` + obj.price + `</td>
-  <td class="table__cell">$` + obj.count * obj.price + `</td>
+  <td class="table__cell table__cell_left">${obj.description}</td>
+  <td class="table__cell">${obj.units}</td>
+  <td class="table__cell">${obj.count}</td>
+  <td class="table__cell">$${obj.price}</td>
+  <td class="table__cell">$${obj.count * obj.price}</td>
   <td class="table__cell table__cell_btn-wrapper">
     <button class="table__btn table__btn_pic"></button>
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
-</tr>`
-  }
-createRow_1();
-console.log(createRow_1());
-const element_1 = createRow_1();
-const table_1 = document.querySelector('table');
-console.log(table_1);
-table_1.insertAdjacentHTML('beforeend', element_1);
-};
-
+</tr>`);
+  };
 
 let goods = [
   {
@@ -105,8 +99,9 @@ createRow(Array[i]);
 };
 };
 renderArray(goods);
+
 function createRow_2(obj) {
-  return `<tr> <td class="table__cell ">`+ obj.id +`</td>
+  return `<tbody class="table__body"><tr> <td class="table__cell ">`+ obj.id +`</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
   <span class="table__cell-id">id: 24601654816512</span>` +
   obj.title + `
@@ -121,8 +116,9 @@ function createRow_2(obj) {
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
-</tr>`
-  }
+</tr>
+</tbody>`
+};
 const element_2= createRow_2(objGood);
 const table_2 = document.querySelector('table');
 console.log(table_2);
