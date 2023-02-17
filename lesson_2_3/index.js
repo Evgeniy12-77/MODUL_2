@@ -122,4 +122,4 @@ function createRow_2(obj) {
 const element_2= createRow_2(objGood);
 const table_2 = document.querySelector('.table__body');
 console.log(table_2);
-table_2.insertAdjacentText('beforeend', element_2);
+console.log(element_2);
