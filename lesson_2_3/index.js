@@ -1,9 +1,5 @@
 
 'use strict'
-const overlay = document.querySelector('.overlay');
-const active = document.querySelector('.active');
-overlay.remove(active);
-
 const objGood = {
   id: 2,
   title: 'Телевизор DEXP',
@@ -12,6 +8,22 @@ const objGood = {
   count: 15,
   price: 1000,
 };
+
+const overlay = document.querySelector('.overlay');
+const active = document.querySelector('.active');
+const modal = document.querySelector('.panel__add-goods');
+const cms = document.querySelector('.cms');
+const modalClose = document.querySelector('.modal__close');
+overlay.remove(active);
+console.log(modal);
+
+modal.addEventListener('click', () => {
+cms.append(overlay, active);
+});
+
+modalClose.addEventListener('click', () => {
+  overlay.remove(active);
+});
 
 
 const createRow = (obj) => {
@@ -102,3 +114,9 @@ function renderArray(Array) {
   };
   };
   renderArray(goods);
+
+
+
+
+
+
