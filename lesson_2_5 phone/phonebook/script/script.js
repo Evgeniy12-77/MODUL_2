@@ -165,7 +165,7 @@ const data = [
       const main = createMain();
       const buttonGroup = createButtonsGroup([
          {
-            className: 'btn btn-primary mr-3',
+            className: 'btn btn-primary mr-3 js-add',
             type: 'button',
             text: 'Добавить',
          },
@@ -185,6 +185,10 @@ const data = [
       app.append(header, main, footer);
       return {
          list: table.tbody,
+         logo,
+         btnAdd: buttonGroup.btns[0],
+         formOverLay: form.overlay,
+         form: form.form,
       };
    };
 
@@ -208,6 +212,7 @@ const data = [
       const phoneLink = document.createElement('a');
       phoneLink.href = `tel:${phone}`;
       phoneLink.textContent = phone;
+      tr.phoneLink = phoneLink;
 
       tdPhone.append(phoneLink);
 
@@ -219,18 +224,55 @@ const data = [
    const renderContacts = (elem, data) => {
       const allRow = data.map(createRow);
       elem.append(...allRow);
+      return allRow;
    };
+
+   const hoverRow = (allRow, logo) => {
+      const text = logo.textContent;
+
+      allRow.forEach(contact => {
+         contact.addEventListener('mouseenter', () => {
+            logo.textContent = contact.phoneLink.textContent;
+         });
+         contact.addEventListener('mousleave', () => {
+            logo.textContent = text;
+         });
+      });
+
+   };
+
+   
 
    const init = (selectorApp, title) => {
       const app = document.querySelector(selectorApp);
       const phoneBook = renderPhoneBook(app, title);
 
-      const { list } = phoneBook;
+      const {list, logo, btnAdd, formOverLay, form} = phoneBook;
 
-      renderContacts(list, data);
-      //Функционал
+       //Функционал
+
+      const allRow = renderContacts(list, data);
+
+      hoverRow(allRow, logo);
+
+
+      btnAdd.addEventListener('click', () => {
+         formOverLay.classList.add('is-visible');
+      });
+
+      formOverLay.addEventListener('click', event => {
+         event.stopPropagation(); //блокирует нажатие на модальное окно
+      });
+
+      formOverLay.addEventListener('click', () => {
+         formOverLay.classList.remove('is-visible');
+      });
+
+      document.addEventListener('touchstart', () => {});
+      document.addEventListener('touchmove', () => {});
+      document.addEventListener('touchend', () => {}); // события для мобильных устройств
    };
 
    window.phoneBookInit = init;
-};
+   };
 
