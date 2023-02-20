@@ -108,6 +108,7 @@ const data = [
    };
 
    const CreateForm = () => {
+
       const overlay = document.createElement('div');
       overlay.classList.add('form-overlay');
 
@@ -151,7 +152,6 @@ const data = [
       form.append(...buttonGroup.btns);
 
       overlay.append(form);
-
       return {
          overlay,
          form,
@@ -229,39 +229,44 @@ const data = [
 
    const hoverRow = (allRow, logo) => {
       const text = logo.textContent;
-
+      console.log(text)
       allRow.forEach(contact => {
          contact.addEventListener('mouseenter', () => {
             logo.textContent = contact.phoneLink.textContent;
          });
-         contact.addEventListener('mousleave', () => {
+         contact.addEventListener('mouseleave', () => {
             logo.textContent = text;
          });
       });
 
    };
 
-   
+   console.log(CreateForm());
 
    const init = (selectorApp, title) => {
+
       const app = document.querySelector(selectorApp);
       const phoneBook = renderPhoneBook(app, title);
 
-      const {list, logo, btnAdd, formOverLay, form} = phoneBook;
+      const {list, logo, btnAdd, formOverLay, form, } = phoneBook;
 
        //Функционал
 
-      const allRow = renderContacts(list, data);
+      const allRow = renderContacts(list, data);      
 
       hoverRow(allRow, logo);
-
+      console.log(btnAdd);
 
       btnAdd.addEventListener('click', () => {
          formOverLay.classList.add('is-visible');
       });
 
-      formOverLay.addEventListener('click', event => {
+      form.addEventListener('click', event => {
          event.stopPropagation(); //блокирует нажатие на модальное окно
+      });
+      
+      form[0].addEventListener('click', () => {
+         formOverLay.classList.remove('is-visible');
       });
 
       formOverLay.addEventListener('click', () => {
