@@ -35,22 +35,9 @@ tableBody.addEventListener('click', e => {
   }
 }
 );
-
 };
 trDelete();
 
-
-/*const tableBody = document.querySelector('.table__body');
-const trDel = document.querySelectorAll('.table__btn_del');
-const tr = document.querySelectorAll('tr');
-
-tableBody.addEventListener('click', e => {
-  const target = e.target;
-  if(target === trDel) {
-    tableBody.remove(tr);
-  };
-});
-*/
 
 const createRow = (obj) => {
 const returnColumn = () => {
