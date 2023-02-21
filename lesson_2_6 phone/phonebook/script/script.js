@@ -297,7 +297,6 @@ const data = [
                list.append(contact);
             }, 2000);
          };
-
       /*form[0].addEventListener('click', () => {
       formOverLay.classList.remove('is-visible');
       });
