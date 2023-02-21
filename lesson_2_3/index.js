@@ -14,6 +14,7 @@ const active = document.querySelector('.active');
 const modal = document.querySelector('.panel__add-goods');
 const cms = document.querySelector('.cms');
 const modalClose = document.querySelector('.modal__close');
+const tableBody = document.querySelector('.table__body');
 overlay.remove(active);
 console.log(modal);
 
@@ -25,10 +26,35 @@ modalClose.addEventListener('click', () => {
   overlay.remove(active);
 });
 
+const trDelete = () => {
+tableBody.addEventListener('click', e => {
+  const target = e.target;
+  if(target.closest('.table__btn_del')) {
+    target.closest('.trdel').remove();
+    console.log(tableBody);
+  }
+}
+);
+
+};
+trDelete();
+
+
+/*const tableBody = document.querySelector('.table__body');
+const trDel = document.querySelectorAll('.table__btn_del');
+const tr = document.querySelectorAll('tr');
+
+tableBody.addEventListener('click', e => {
+  const target = e.target;
+  if(target === trDel) {
+    tableBody.remove(tr);
+  };
+});
+*/
 
 const createRow = (obj) => {
 const returnColumn = () => {
-return `<tr> <td class="table__cell">${obj.id}</td>
+return `<tr class='trdel'> <td class="table__cell">${obj.id}</td>
     <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
     <span class="table__cell-id">id: 24601654816512</span>${obj.title}
     </td>
