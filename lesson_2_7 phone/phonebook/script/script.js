@@ -108,6 +108,7 @@ const data = [
    };
 
    const CreateForm = () => {
+
       const overlay = document.createElement('div');
       overlay.classList.add('form-overlay');
 
@@ -151,7 +152,6 @@ const data = [
       form.append(...buttonGroup.btns);
 
       overlay.append(form);
-
       return {
          overlay,
          form,
@@ -165,7 +165,7 @@ const data = [
       const main = createMain();
       const buttonGroup = createButtonsGroup([
          {
-            className: 'btn btn-primary mr-3',
+            className: 'btn btn-primary mr-3 js-add',
             type: 'button',
             text: 'Добавить',
          },
@@ -185,13 +185,18 @@ const data = [
       app.append(header, main, footer);
       return {
          list: table.tbody,
+         logo,
+         btnAdd: buttonGroup.btns[0],
+         btnDel: buttonGroup.btns[1],
+         formOverLay: form.overlay,
+         form: form.form,
       };
    };
 
    const createRow = ({ name: firstName, surname, phone }) => {
 
       const tr = document.createElement('tr');     
-      
+      tr.classList.add('contact');
       const tdDel = document.createElement('td'); 
       tdDel.classList.add('delete');
       const buttonDel = document.createElement('button');
@@ -208,6 +213,7 @@ const data = [
       const phoneLink = document.createElement('a');
       phoneLink.href = `tel:${phone}`;
       phoneLink.textContent = phone;
+      tr.phoneLink = phoneLink;
 
       tdPhone.append(phoneLink);
 
@@ -219,18 +225,86 @@ const data = [
    const renderContacts = (elem, data) => {
       const allRow = data.map(createRow);
       elem.append(...allRow);
+      return allRow;
    };
 
+   const hoverRow = (allRow, logo) => {
+      const text = logo.textContent;
+      console.log(text)
+      allRow.forEach(contact => {
+         contact.addEventListener('mouseenter', () => {
+            logo.textContent = contact.phoneLink.textContent;
+         });
+         contact.addEventListener('mouseleave', () => {
+            logo.textContent = text;
+         });
+      });
+
+   };
+
+   console.log(CreateForm());
+
    const init = (selectorApp, title) => {
+
       const app = document.querySelector(selectorApp);
       const phoneBook = renderPhoneBook(app, title);
 
-      const { list } = phoneBook;
+      const {list, 
+         logo, 
+         btnAdd, 
+         formOverLay, 
+         form, 
+         btnDel,} = phoneBook;
 
-      renderContacts(list, data);
-      //Функционал
-   };
+       //Функционал
 
+      const allRow = renderContacts(list, data);      
+
+      hoverRow(allRow, logo);
+      console.log(btnAdd);
+
+      btnAdd.addEventListener('click', () => {
+         formOverLay.classList.add('is-visible');
+      });
+
+      formOverLay.addEventListener('click', e => {
+         const target = e.target;
+         if(target === formOverLay ||
+            target.classList.contains('close')) {
+         formOverLay.classList.remove('is-visible');
+         };
+      });
+      
+      btnDel.addEventListener('click', () => {
+         document.querySelectorAll('.delete').forEach(del => {
+            del.classList.toggle('is-visible');
+         });
+      });
+
+         list.addEventListener('click', e => {
+            const target = e.target;
+            if(target.closest('.del-icon')) {
+               target.closest('.contact').remove();
+            }
+         });
+      
+         setTimeout(() => {
+            const contact = createRow({
+               name: 'Евгений',
+               surname: 'Толкач',
+               phone: '375',
+               });
+               list.append(contact);
+            }, 2000);
+         };
+      /*form[0].addEventListener('click', () => {
+      formOverLay.classList.remove('is-visible');
+      });
+      */
+
+      /*document.addEventListener('touchstart', () => {});
+      document.addEventListener('touchmove', () => {});
+      document.addEventListener('touchend', () => {}); // события для мобильных устройств
+      */
    window.phoneBookInit = init;
-};
-
+   };
