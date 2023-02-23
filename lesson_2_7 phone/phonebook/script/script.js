@@ -24,6 +24,11 @@ const data = [
 ];
 
 {  
+   const addContactData = contact => {
+      data.push(contact);
+      console.log('data', data)
+   };
+
    const createContainer = () => {
       const container = document.createElement('div');
       container.classList.add('container');
@@ -177,19 +182,19 @@ const data = [
       ]);
 
       const table = createTable();
-      const form = CreateForm();
+      const {form, overlay} = CreateForm();
       const footer = createFooter();
 
       header.headerContainer.append(logo);
-      main.mainContainer.append(buttonGroup.btnWrapper, table, form.overlay);
+      main.mainContainer.append(buttonGroup.btnWrapper, table, overlay);
       app.append(header, main, footer);
       return {
          list: table.tbody,
          logo,
          btnAdd: buttonGroup.btns[0],
          btnDel: buttonGroup.btns[1],
-         formOverLay: form.overlay,
-         form: form.form,
+         formOverLay: overlay,
+         form: form,
       };
    };
 
@@ -242,60 +247,81 @@ const data = [
 
    };
 
+   const modalControl = (btnAdd, formOverLay) => {
+      const openModal = () => {
+         formOverLay.classList.add('is-visible');
+      };
+      const closeModal = () => {
+         formOverLay.classList.remove('is-visible');
+      };   
+      btnAdd.addEventListener('click', openModal);  
+
+   formOverLay.addEventListener('click', e => {
+      const target = e.target;
+      if(target === formOverLay ||
+         target.classList.contains('close')) {
+         closeModal();
+      };
+   });
+   return {
+      closeModal,
+   };
+   };
+
+   const deleteControl = (btnDel, list) => {
+   btnDel.addEventListener('click', () => {
+      document.querySelectorAll('.delete').forEach(del => {
+         del.classList.toggle('is-visible');
+      });
+   });
+
+      list.addEventListener('click', e => {
+         const target = e.target;
+         if(target.closest('.del-icon')) {
+            target.closest('.contact').remove();
+         }
+      });
+   }; 
+
    console.log(CreateForm());
+
+   const addContactPage = (contact, list) => {
+      list.append(createRow(contact));
+   };
+
+   const formControl = (form, list, closeModal) => {
+   form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const newContact = Object.fromEntries(formData);
+      addContactPage(newContact, list);
+      addContactData(newContact);
+      form.reset();
+      closeModal();
+   });
+   };
 
    const init = (selectorApp, title) => {
 
       const app = document.querySelector(selectorApp);
-      const phoneBook = renderPhoneBook(app, title);
 
       const {list, 
          logo, 
          btnAdd, 
          formOverLay, 
          form, 
-         btnDel,} = phoneBook;
+         btnDel,} = renderPhoneBook(app, title);
 
        //Функционал
 
-      const allRow = renderContacts(list, data);      
+      const allRow = renderContacts(list, data);
+      const {closeModal} = modalControl(btnAdd,formOverLay);      
 
       hoverRow(allRow, logo);
-      console.log(btnAdd);
-
-      btnAdd.addEventListener('click', () => {
-         formOverLay.classList.add('is-visible');
-      });
-
-      formOverLay.addEventListener('click', e => {
-         const target = e.target;
-         if(target === formOverLay ||
-            target.classList.contains('close')) {
-         formOverLay.classList.remove('is-visible');
-         };
-      });
+      deleteControl(btnDel, list);
+      formControl(form, list,  closeModal);
+      console.log(btnAdd); 
       
-      btnDel.addEventListener('click', () => {
-         document.querySelectorAll('.delete').forEach(del => {
-            del.classList.toggle('is-visible');
-         });
-      });
-
-         list.addEventListener('click', e => {
-            const target = e.target;
-            if(target.closest('.del-icon')) {
-               target.closest('.contact').remove();
-            }
-         });
-      
-         setTimeout(() => {
-            const contact = createRow({
-               name: 'Евгений',
-               surname: 'Толкач',
-               phone: '375',
-               });
-               list.append(contact);
-            }, 2000);
          };
       /*form[0].addEventListener('click', () => {
       formOverLay.classList.remove('is-visible');
