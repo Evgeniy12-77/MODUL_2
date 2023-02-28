@@ -14,16 +14,28 @@ const modal = document.querySelector('.panel__add-goods');
 const cms = document.querySelector('.cms');
 const modalClose = document.querySelector('.modal__close');
 const tableBody = document.querySelector('.table__body');
-overlay.remove(active);
-console.log(modal);
+//overlay.remove(active);
+const form = document.querySelector('.modal__form');
+
+//console.log(form);
 
 modal.addEventListener('click', () => {
-cms.append(overlay, active);
+cms.append(overlay);
 });
 
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newProduct = ([Object.fromEntries(formData)]);
+  renderArray(newProduct);
+  closeModal();
+});
+
+const closeModal = () => {
 modalClose.addEventListener('click', () => {
   overlay.remove(active);
 });
+};
 
 const trDelete = () => {
 tableBody.addEventListener('click', e => {
@@ -39,8 +51,9 @@ trDelete();
 
 
 const createRow = (obj) => {
+
 const returnColumn = () => {
-return `<tr class='trdel'> <td class="table__cell">${obj.id}</td>
+return `<tr class='trdel'> <td class="table__cell" type="id">${obj.id}</td>
     <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
     <span class="table__cell-id">id: 24601654816512</span>${obj.title}
     </td>

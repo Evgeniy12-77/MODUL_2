@@ -111,7 +111,7 @@
       <div class="modal_top">
         <h2 class="modal__title">Добавить товар</h2>
         <div class="modal__vendor-code vendor-code">
-          <p class="vendor-code__wrapper">id: <span class="vendor-code__id">24601654816512</span></p>
+          <p class="vendor-code__wrapper">id: <span class="vendor-code__id" type="number">24601654816512</span></p>
         </div>
       </div>
 
@@ -150,12 +150,12 @@
 
           <label class="modal__label modal__label_count" for="count">
             <span class="modal__text">Количество</span>
-            <input class="modal__input" type="text" name="count" id="count">
+            <input class="modal__input" type="number" name="count" id="count">
           </label>
 
           <label class="modal__label modal__label_price" for="price">
             <span class="modal__text">Цена</span>
-            <input class="modal__input" type="text" name="price" id="price">
+            <input class="modal__input" type="number" name="price" id="price">
           </label>
 
           <label tabindex="0" for="image" class="modal__label modal__label_file">Добавить изображение</label>
@@ -164,7 +164,7 @@
 
         <div class="modal__footer">
           <label class="modal__total">Итоговая стоимость:
-            <output class="modal__total-price" name="total">$ 900.00</output>
+            <output class="modal__total-price" type="number" name="total">$ 900.00</output>
           </label>
 
           <button class="modal__submit" type="submit">Добавить товар</button>
