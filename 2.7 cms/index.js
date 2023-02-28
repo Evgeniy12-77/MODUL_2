@@ -23,6 +23,13 @@ modal.addEventListener('click', () => {
 cms.append(overlay);
 });
 
+const closeModal = () => {
+  modalClose.addEventListener('click', () => {
+    overlay.remove(active);
+  });
+  };
+closeModal();
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -31,11 +38,7 @@ form.addEventListener('submit', e => {
   closeModal();
 });
 
-const closeModal = () => {
-modalClose.addEventListener('click', () => {
-  overlay.remove(active);
-});
-};
+
 
 const trDelete = () => {
 tableBody.addEventListener('click', e => {
