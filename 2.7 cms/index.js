@@ -112,9 +112,7 @@ function totalPrice(Array) {
 
 renderArray(goods);
 totalPrice(goods);
-
 const tableBody = document.querySelector('.table__body');
-const td_6 = tableBody.querySelectorAll('.sum-cell');
 const overlay = document.querySelector('.overlay');
 const active = document.querySelector('.active');
 const modal = document.querySelector('.panel__add-goods');
