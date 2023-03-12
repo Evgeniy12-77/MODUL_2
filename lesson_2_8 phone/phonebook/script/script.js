@@ -311,15 +311,16 @@ const data = [
       const formData = new FormData(e.target);
       const newContact = Object.fromEntries(formData);
       console.log(newContact.name);
-      localStorage.setItem('newContact', JSON.stringify({firstname: newContact.name, phone: newContact.phone, surname: newContact.surname}));
+      localStorage.setItem('newContact', JSON.stringify({name: newContact.name, surname: newContact.surname, phone: newContact.phone}));      
       addContactPage(newContact, list);
       addContactData(newContact);
       form.reset();
       closeModal();
    });
    };
+   
    const contacts_1 = JSON.parse(localStorage.getItem('newContact'));
-   addContactData(contacts_1);
+   addContactData(contacts_1);  
 
    const init = (selectorApp, title) => {
 
