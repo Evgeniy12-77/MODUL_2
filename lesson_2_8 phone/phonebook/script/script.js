@@ -23,6 +23,7 @@ const data = [
    },
 ];
 
+
 {  
    const addContactData = contact => {
       data.push(contact);
@@ -283,6 +284,21 @@ const data = [
       });
    }; 
 
+   const getLocalStorageData = () => Object.entries(localStorage)
+.reduce((acc, [key, value]) => {
+   let newValue;
+   try {
+      newValue = JSON.parse(value);
+   } catch {
+      newValue = value;
+   }
+   return {
+      ...acc,
+      [key]: newValue,
+   };
+},
+{});
+
    console.log(CreateForm());
 
    const addContactPage = (contact, list) => {
@@ -294,12 +310,16 @@ const data = [
       e.preventDefault();
       const formData = new FormData(e.target);
       const newContact = Object.fromEntries(formData);
+      console.log(newContact.name);
+      localStorage.setItem('newContact', JSON.stringify({firstname: newContact.name, phone: newContact.phone, surname: newContact.surname}));
       addContactPage(newContact, list);
       addContactData(newContact);
       form.reset();
       closeModal();
    });
    };
+   const contacts_1 = JSON.parse(localStorage.getItem('newContact'));
+   addContactData(contacts_1);
 
    const init = (selectorApp, title) => {
 
