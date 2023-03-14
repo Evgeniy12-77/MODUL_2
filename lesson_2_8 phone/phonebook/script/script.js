@@ -1,37 +1,27 @@
 'use strict';
 
-const data = [
-   {
-   name: 'Иван',
-   surname: 'Петров',
-   phone: '+79514545454',
-   },
-   {
-   name: 'Игорь',
-   surname: 'Семёнов',
-   phone: '+79999999999',
-   },
-   {
-   name: 'Семён',
-   surname: 'Иванов',
-   phone: '+79800252525',
-   },
-   {
-   name: 'Мария',
-   surname: 'Попова',
-   phone: '+79876543210',
-   },
-];
+const data = [];
 
 
 {  
-   const addContactData = contact => {
-      data = JSON.parse(localStorage.getItem('data'));
-      contact = {name: contact.name, surname: contact.surname, phone: contact.phone};
+   const getStorage = () => (localStorage.getItem('storageData') ?
+   JSON.parse(localStorage.getItem('storageData')) : [] );
+
+   const setStorage = (data) => {
+      localStorage.setItem('storageData', JSON.stringify(data));
+   };
+
+   const addContactData = contact => {      
       data.push(contact);
-      localStorage.setItem('data', JSON.stringify(data));
+      setStorage(data);
       console.log('data', data);
    };
+
+   const removeStorage = (number) => {
+      const data = getStorage('storageData');
+      const newData = data.filter(el => el.phone !== number);
+      setStorage(newData);
+   }
    
 
    const createContainer = () => {
@@ -283,7 +273,11 @@ const data = [
       list.addEventListener('click', e => {
          const target = e.target;
          if(target.closest('.del-icon')) {
-            target.closest('.contact').remove();
+            const delRow = target.closest('.contact');
+            delRow.remove();
+            const phone = delRow.children[3].textContent;
+            console.log(phone);
+            removeStorage(phone);
          }
       });
    }; 
@@ -300,9 +294,8 @@ const data = [
       const formData = new FormData(e.target);
       const newContact = Object.fromEntries(formData);
       console.log(newContact.name);
-      //localStorage.setItem('newContact', JSON.stringify({name: newContact.name, surname: newContact.surname, phone: newContact.phone}));      
-      addContactPage(newContact, list);
       addContactData(newContact);
+      addContactPage(newContact, list);
       form.reset();
       closeModal();
    });
@@ -311,6 +304,7 @@ const data = [
    const init = (selectorApp, title) => {
 
       const app = document.querySelector(selectorApp);
+      const data = getStorage();
 
       const {list, 
          logo, 
