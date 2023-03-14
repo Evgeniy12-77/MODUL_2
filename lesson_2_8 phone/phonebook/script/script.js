@@ -26,9 +26,13 @@ const data = [
 
 {  
    const addContactData = contact => {
+      data = JSON.parse(localStorage.getItem('data'));
+      contact = {name: contact.name, surname: contact.surname, phone: contact.phone};
       data.push(contact);
-      console.log('data', data)
+      localStorage.setItem('data', JSON.stringify(data));
+      console.log('data', data);
    };
+   
 
    const createContainer = () => {
       const container = document.createElement('div');
@@ -284,21 +288,6 @@ const data = [
       });
    }; 
 
-   const getLocalStorageData = () => Object.entries(localStorage)
-.reduce((acc, [key, value]) => {
-   let newValue;
-   try {
-      newValue = JSON.parse(value);
-   } catch {
-      newValue = value;
-   }
-   return {
-      ...acc,
-      [key]: newValue,
-   };
-},
-{});
-
    console.log(CreateForm());
 
    const addContactPage = (contact, list) => {
@@ -311,16 +300,13 @@ const data = [
       const formData = new FormData(e.target);
       const newContact = Object.fromEntries(formData);
       console.log(newContact.name);
-      localStorage.setItem('newContact', JSON.stringify({name: newContact.name, surname: newContact.surname, phone: newContact.phone}));      
+      //localStorage.setItem('newContact', JSON.stringify({name: newContact.name, surname: newContact.surname, phone: newContact.phone}));      
       addContactPage(newContact, list);
       addContactData(newContact);
       form.reset();
       closeModal();
    });
    };
-   
-   const contacts_1 = JSON.parse(localStorage.getItem('newContact'));
-   addContactData(contacts_1);  
 
    const init = (selectorApp, title) => {
 

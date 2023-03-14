@@ -16,15 +16,15 @@ console.log('ls: ', ls);
 //localStorage.clear();
 //sessionStorage.clear();
 
-localStorage.setItem('test1', true);
-localStorage.setItem('test2', false);
-localStorage.setItem('test3', 123);
-localStorage.setItem('test4', JSON.stringify([1, 2, 3]));
-localStorage.setItem('test5', JSON.stringify({a: 1, b: 2}));
+//localStorage.setItem('test1', true);
+//localStorage.setItem('test2', false);
+//localStorage.setItem('test3', 123);
+//localStorage.setItem('test4', JSON.stringify([1, 2, 3]));
+//localStorage.setItem('test5', JSON.stringify({a: 1, b: 2}));
 
-const test4 = JSON.parse(localStorage.getItem('test4')); //распарсить данные
-const test5 = JSON.parse(localStorage.getItem('test5'));
-
+//const test4 = JSON.parse(localStorage.getItem('test4')); //распарсить данные
+//const test5 = JSON.parse(localStorage.getItem('test5'));
+/*
 const getLocalStorageData = () => Object.entries(localStorage)
 .reduce((acc, [key, value]) => {
    let newValue;
@@ -39,8 +39,8 @@ const getLocalStorageData = () => Object.entries(localStorage)
    };
 },
 {});
+*/
 
-
-console.log(getLocalStorageData());
+//console.log(getLocalStorageData());
 
    
