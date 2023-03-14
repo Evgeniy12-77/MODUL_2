@@ -12,6 +12,7 @@ const data = [];
    };
 
    const addContactData = contact => {      
+      const data = getStorage('storageData');
       data.push(contact);
       setStorage(data);
       console.log('data', data);
@@ -294,8 +295,8 @@ const data = [];
       const formData = new FormData(e.target);
       const newContact = Object.fromEntries(formData);
       console.log(newContact.name);
-      addContactData(newContact);
       addContactPage(newContact, list);
+      addContactData(newContact);
       form.reset();
       closeModal();
    });
