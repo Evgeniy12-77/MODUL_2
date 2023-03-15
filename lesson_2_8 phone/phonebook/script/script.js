@@ -2,14 +2,12 @@
 
 const data = [];
 
-
 {  
-   const getStorage = () => (localStorage.getItem('storageData') ?
-   JSON.parse(localStorage.getItem('storageData')) : [] );
+   const getStorage = () => JSON.parse(localStorage.getItem('storageData')) || [] ;
 
-   const setStorage = (data) => {
-      localStorage.setItem('storageData', JSON.stringify(data));
-   };
+   const setStorage = (data) => localStorage.setItem('storageData', JSON.stringify(data));
+   
+
 
    const addContactData = contact => {      
       const data = getStorage('storageData');
