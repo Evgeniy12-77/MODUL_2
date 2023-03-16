@@ -16,12 +16,6 @@ const {
    getStorage,
 } = require('./modules/serviceStorage');
 
-
-
-
-
-const data = [];
-
    { 
       const init = (selectorApp, title) => {
 
