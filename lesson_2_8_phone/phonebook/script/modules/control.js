@@ -1,15 +1,3 @@
-'use strict';
-
-const { 
-   createRow,
-} = require('./createElements');
-
-const {
-   addContactData,
-   removeStorage,
-} = require('./serviceStorage');
-
-
 
 const modalControl = (btnAdd, formOverLay) => {
    const openModal = () => {
@@ -30,7 +18,7 @@ formOverLay.addEventListener('click', e => {
 return {
    closeModal,
 };
-};
+}
 
 const deleteControl = (btnDel, list) => {
 btnDel.addEventListener('click', () => {
@@ -49,11 +37,11 @@ btnDel.addEventListener('click', () => {
          removeStorage(phone);
       }
    });
-}; 
+}
 
 const addContactPage = (contact, list) => {
    list.append(createRow(contact));
-};
+}
 
 const formControl = (form, list, closeModal) => {
 form.addEventListener('submit', e => {
@@ -66,10 +54,12 @@ form.addEventListener('submit', e => {
    form.reset();
    closeModal();
 });
-};
+}
 
-module.exports = {
+export default {
    modalControl,
    deleteControl,
+   addContactPage,
    formControl,
 };
+

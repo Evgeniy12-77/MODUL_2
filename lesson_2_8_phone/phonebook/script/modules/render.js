@@ -1,18 +1,5 @@
-'use strict';
 
-const { 
-   createHeader,
-   createLogo,
-   createMain,
-   createButtonsGroup,
-   createTable,
-   CreateForm,
-   createFooter,
-   createRow,
-   
-} = require('./createElements');
-
-const renderPhoneBook = (app, title) => {
+ const renderPhoneBook = (app, title) => {
    const header = createHeader();
    const logo = createLogo(title);
    const main = createMain();
@@ -46,15 +33,17 @@ const renderPhoneBook = (app, title) => {
    };
 };
 
-const renderContacts = (elem, data) => {
+ const renderContacts = (elem, data) => {
    const allRow = data.map(createRow);
    elem.append(...allRow);
    return allRow;
 };
 
-module.exports = {
+export default {
    renderPhoneBook,
    renderContacts,
 };
+
+
 
 

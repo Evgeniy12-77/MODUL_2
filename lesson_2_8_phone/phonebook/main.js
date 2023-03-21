@@ -261,7 +261,7 @@ module.exports = {
 const { 
    createHeader,
    createLogo,
-   createMain,
+   createMain, 
    createButtonsGroup,
    createTable,
    CreateForm,
@@ -384,13 +384,12 @@ const {
       
       const hoverRow = (allRow, logo) => {
          const text = logo.textContent;
-         console.log(text)
          allRow.forEach(contact => {
             contact.addEventListener('mouseenter', () => {
                logo.textContent = contact.phoneLink.textContent;
             });
             contact.addEventListener('mouseleave', () => {
-               logo.textContent = text;
+            logo.textContent = text;
             });
          });
       };

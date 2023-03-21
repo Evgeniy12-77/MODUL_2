@@ -1,12 +1,10 @@
-'use strict';
-
-const createContainer = () => {
+ const createContainer = () => {
    const container = document.createElement('div');
    container.classList.add('container');
    return container;
 };
 
-const createHeader = () => {
+ const createHeader = () => {
    const header = document.createElement('header');
    header.classList.add('header');
 
@@ -17,14 +15,14 @@ const createHeader = () => {
    return header
 };
 
-const createLogo = title => {
+ const createLogo = title => {
 const h1 = document.createElement('h1');
 h1.classList.add('logo');
 h1.textContent = `Телефонный справочник. ${title}`;
 return h1;
 };
 
-const createMain = () => {
+ const createMain = () => {
    const main = document.createElement('main');
    const mainContainer = createContainer();
    main.append(mainContainer);
@@ -32,7 +30,7 @@ const createMain = () => {
    return main;
 };
 
-const createFooter = () => {
+ const createFooter = () => {
    const footer = document.createElement('footer');
    footer.classList.add('footer');
 
@@ -44,7 +42,7 @@ const createFooter = () => {
    return footer;
 };
 
-const createButtonsGroup = params => {
+ const createButtonsGroup = params => {
    const btnWrapper = document.createElement('div');
    btnWrapper.classList.add('btn-wrapper');
 
@@ -64,7 +62,7 @@ const createButtonsGroup = params => {
    };
 };
 
-const createTable = () => {
+ const createTable = () => {
    const table = document.createElement('table');
    table.classList.add('table', 'table-striped');
 
@@ -83,7 +81,7 @@ const createTable = () => {
    return table;
 };
 
-const CreateForm = () => {
+ const CreateForm = () => {
 
    const overlay = document.createElement('div');
    overlay.classList.add('form-overlay');
@@ -134,7 +132,7 @@ const CreateForm = () => {
    };      
 };
 
-const hoverRow = (allRow, logo) => {
+ const hoverRow = (allRow, logo) => {
    const text = logo.textContent;
    console.log(text)
    allRow.forEach(contact => {
@@ -148,7 +146,7 @@ const hoverRow = (allRow, logo) => {
 
 };
 
-const createRow = ({ name: firstName, surname, phone }) => {
+ const createRow = ({ name: firstName, surname, phone }) => {
 
    const tr = document.createElement('tr');     
    tr.classList.add('contact');
@@ -177,14 +175,16 @@ const createRow = ({ name: firstName, surname, phone }) => {
    return tr;
 };
 
-module.exports = {
+export default {
+   createContainer,
    createHeader,
    createLogo,
    createMain,
+   createFooter,
    createButtonsGroup,
    createTable,
    CreateForm,
-   createFooter,
+   hoverRow,
    createRow,
 };
 
