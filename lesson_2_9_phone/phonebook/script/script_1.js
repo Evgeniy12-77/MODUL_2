@@ -1,33 +1,17 @@
 
-
-import controlElements from './modules/control.js';
-const {modalControl,
+import {modalControl,
 deleteControl,
-addContactPage,
-formControl} = controlElements;
-
+formControl} from './modules/control.js';
 import create from './modules/createElements.js';
-const {
-   createContainer,
-   createHeader,
-   createLogo,
-   createMain,
-   createFooter,
-   createButtonsGroup,
-   createTable,
-   CreateForm,
+const {   
    hoverRow,
-   createRow,
 } = create;
-import render from './modules/render.js';
-const {renderPhoneBook,
-renderContacts} = render;
+import {renderPhoneBook,
+renderContacts} from './modules/render.js';
+
 import service from './modules/serviceStorage.js';
-const { getStorage,
-   setStorage,
-   addContactData,
-   removeStorage} = service;
-   { 
+const { getStorage } = service;
+
       const init = (selectorApp, title) => {
 
       const app = document.querySelector(selectorApp);
@@ -48,11 +32,8 @@ const { getStorage,
       hoverRow(allRow, logo);
       deleteControl(btnDel, list);
       formControl(form, list,  closeModal);
-      console.log(btnAdd); 
-      
-         };
+      };
    window.phoneBookInit = init;
-   };
 
 
 

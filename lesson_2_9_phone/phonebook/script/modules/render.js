@@ -1,5 +1,17 @@
 
- const renderPhoneBook = (app, title) => {
+import create from './createElements.js';
+const {
+   createHeader,
+   createLogo,
+   createMain,
+   createFooter,
+   createButtonsGroup,
+   createTable,
+   CreateForm,
+   createRow,
+} = create;
+
+ export const renderPhoneBook = (app, title) => {
    const header = createHeader();
    const logo = createLogo(title);
    const main = createMain();
@@ -33,15 +45,10 @@
    };
 };
 
- const renderContacts = (elem, data) => {
+ export const renderContacts = (elem, data) => {
    const allRow = data.map(createRow);
    elem.append(...allRow);
    return allRow;
-};
-
-export default {
-   renderPhoneBook,
-   renderContacts,
 };
 
 

@@ -1,4 +1,11 @@
 
+import create_1 from './createElements.js';
+const { createRow } = create_1;
+import storage from './serviceStorage.js';
+const { addContactData,
+removeStorage } = storage;
+
+
 const modalControl = (btnAdd, formOverLay) => {
    const openModal = () => {
       formOverLay.classList.add('is-visible');

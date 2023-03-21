@@ -12,7 +12,7 @@
    header.append(headerContainer);
 
    header.headerContainer = headerContainer;
-   return header
+   return header;
 };
 
  const createLogo = title => {
@@ -42,7 +42,7 @@ return h1;
    return footer;
 };
 
- const createButtonsGroup = params => {
+const createButtonsGroup = params => {
    const btnWrapper = document.createElement('div');
    btnWrapper.classList.add('btn-wrapper');
 
