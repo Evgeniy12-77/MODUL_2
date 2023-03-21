@@ -1,13 +1,17 @@
 
-import {modalControl,
+import control from './modules/control.js';
+const {modalControl,
 deleteControl,
-formControl} from './modules/control.js';
+formControl} = control;
+
 import create from './modules/createElements.js';
 const {   
    hoverRow,
 } = create;
-import {renderPhoneBook,
-renderContacts} from './modules/render.js';
+
+import render from './modules/render.js';
+const {renderPhoneBook,
+renderContacts} = render;
 
 import service from './modules/serviceStorage.js';
 const { getStorage } = service;
